@@ -1,6 +1,6 @@
-_Author_:  <!-- TODO: Add author name --> \
-_Created_: <!-- TODO: Add date --> \
-_Updated_: <!-- TODO: Add date --> \
+_Author_: @Pasindu599\
+_Created_: 22/12/2024 \
+_Updated_: 22/12/2024 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
@@ -10,9 +10,10 @@ The OpenAPI specification is obtained from (TODO: Add source link).
 These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
 
 [//]: # (TODO: Add sanitation details)
-1. 
-2. 
-3. 
+1. **Removed Circular References**:
+   - Eliminated recursive references in the `allOf` clauses by removing `$ref: "#/components/schemas/FormDefinitionBase"` and `$ref: "#/components/schemas/FormDefinitionCreateRequestBase"`.
+   - **Reason**: Prevented processing errors in tools that struggle with circular dependencies.
+
 
 ## OpenAPI cli command
 

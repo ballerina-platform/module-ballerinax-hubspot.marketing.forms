@@ -11,7 +11,10 @@ These changes are done in order to improve the overall usability, and as workaro
 
 [//]: # (TODO: Add sanitation details)
 1. **Removed Circular References**:
-   - Eliminated recursive references in the `allOf` clauses by removing \`$ref: "#/components/schemas/FormDefinitionBase"` \and \`$ref: "#/components/schemas/FormDefinitionCreateRequestBase"`.
+   - Eliminated recursive references in the `allOf` clauses by removing
+   - `$ref: "#/components/schemas/FormDefinitionBase"`
+   - and
+   - `$ref: "#/components/schemas/FormDefinitionCreateRequestBase"`.
    - **Reason**: Prevented processing errors in tools that struggle with circular dependencies.
 
 

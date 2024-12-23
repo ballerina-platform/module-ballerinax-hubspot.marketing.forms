@@ -136,7 +136,59 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 ## Quickstart
 
-[//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
+[//]: # "TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets."
+
+To use the `HubSpot Marketing Forms` connector in your Ballerina application, update the `.bal` file as follows:
+
+### Step 1: Import the module
+
+Import the `hubspot.marketing.forms` module and `oauth2` module.
+
+```ballerina
+import ballerinax/hubspot.marketing.forms as hsmforms;
+import ballerina/oauth2;
+```
+
+### Step 2: Instantiate a new connector
+
+1. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
+
+   ```toml
+    clientId = <Client Id>
+    clientSecret = <Client Secret>
+    refreshToken = <Refresh Token>
+   ```
+
+2. Instantiate a `hsmforms:ConnectionConfig` with the obtained credentials and initialize the connector with it.
+
+    ```ballerina 
+    configurable string clientId = ?;
+    configurable string clientSecret = ?;
+    configurable string refreshToken = ?;
+
+    final hsmforms:ConnectionConfig hsmformsConfig = {
+        auth : {
+            clientId,
+            clientSecret,
+            refreshToken,
+            credentialBearer: oauth2:POST_BODY_BEARER
+        }
+    };
+
+    final hsmforms:Client hsmformsClient = check new (hsmformsConfig, "https://api.hubapi.com");
+    ```
+
+### Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations. A sample usecase is shown below.
+
+#### Create a Marketing Event
+    
+```ballerina
+public function main() returns error? {
+    hsmforms:CollectionResponseFormDefinitionBaseForwardPaging forms = check baseClient->/marketing/v3/forms.get();
+}
+```
 
 ## Examples
 

@@ -8,102 +8,131 @@
 
 ## Overview
 
-[HubSpot ](https://www.hubspot.com/) is an AI-powered customer platform with all the software, integrations, and resources you need to connect your marketing, sales, and customer service. HubSpot's connected platform enables you to grow your business faster by focusing on what matters most: your customers.
+[HubSpot](https://www.hubspot.com/our-story) is a customer platform with all the software, integrations, and resources users need to connect thier marketing, sales, and customer service.
 
-The `hubspot.marketing.forms` package offers APIs to connect and interact with [Marketing Forms API](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, enabling the creation, management, and embedding of forms to collect submissions from website visitors programmatically.
+The `hubspot.marketing.forms` package offers APIs to connect and interact with [Marketing Forms API](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, specifically based on HubSpot API v3.
+
+>**_NOTE:_**             
+This package may be changed in the future based on the HubSpot API changes, since it is currently under development and is subject to change based on testing and feedback. By using this package, you are agreeing to accept any future changes that might occur and understand the risk associated with testing an unstable API.
+Refer to the [HubSpot Developer Terms](https://legal.hubspot.com/developer-terms?_gl=1*fmuxuh*_ga*NDU4NDIxOTA5LjE3MzQ3ODM3Mjg.*_ga_LXTM6CQ0XK*MTczNDgwNjI1OS4yLjAuMTczNDgwNjI1OS42MC4wLjA.&_ga=2.66923502.174841559.1734639641-983296813.1734639641) & [Developer Beta Terms](https://legal.hubspot.com/developerbetaterms?_gl=1*fmuxuh*_ga*NDU4NDIxOTA5LjE3MzQ3ODM3Mjg.*_ga_LXTM6CQ0XK*MTczNDgwNjI1OS4yLjAuMTczNDgwNjI1OS42MC4wLjA.&_ga=2.66923502.174841559.1734639641-983296813.1734639641) for more information.
 
 ## Setup guide
 
-[//]: # (TODO: Add detailed steps to obtain credentials and configure the module.)
+To use the HubSpot Feedback connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
+
+### Step 1: Create/Login to a HubSpot Developer Account
+
+If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
+
+If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
+
+### Step 2 (Optional): Create a [Developer Test Account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account
+
+Within app developer accounts, you can create developer test accounts to test apps and integrations without affecting any real HubSpot data.
+
+**_These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts._**
+
+1. Go to Test accounts section from the left sidebar.
+
+<img src="./docs/setup/resources/test-account.png" width="70%">
+
+2. Click on the `Create developer test account` button on the top right corner.
+
+<img src="./docs/setup/resources/create-test-account.png" width="70%">
+
+3. In the pop-up window, provide a name for the test account and click on the `Create` button.
+
+<img src="./docs/setup/resources/create-account.png" width="70%">
+
+4. You will see the newly created test account in the list of test accounts.
+
+<img src="./docs/setup/resources/test-account-portal.png" width="70%">
+
+### Step 3: Create a HubSpot App
+
+1. Now navigate to the `Apps` section from the left sidebar and click on the `Create app` button on the top right corner.
+<img src="./docs/setup/resources/create-app.png" width="70%">
+
+2. Provide a public app name and description for your app.
+
+<img src="./docs/setup/resources/app-name-desc.png" width="70%">
+
+### Step 4: Setup Authentication
+
+1. Move to the `Auth` tab.
+
+<img src="./docs/setup/resources/config-auth.png" width="70%">
 
 
-[//]: # (TODO: Add detailed steps to obtain credentials and configure the module.)
-To use the Hubpsot Automation action API connector in Ballerina, you must have a HubSpot developer account.
+2. In the `Scopes` section, add the following scopes for your app using the `Add new scopes` button.
+   - `forms`
 
- ### Step 1: Create a Hubspot Developer Account
+<img src="./docs/setup/resources/add-scopes.png" width="70%">
 
-Visit the Hubspot portal (https://developers.hubspot.com/get-started) and create a Developer Account.
+3. In the `Redirect URL` section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can use localhost for testing purposes. Then hit the `Create App` button.
 
- ### Step 2: Create a Hubspot Developer Account
+<img src="./docs/setup/resources/redirect-url.png" width="70%">
 
-Create a Developer Test Account at (https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts)
+### Step 5: Get the Client ID and Client Secret
 
- ### Step 3: Create a Hubspot Develop Test Account
+Navigate to the `Auth` tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
 
-Visit (https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts)and create a hubspot developer test account
+<img src="./docs/setup/resources/client-id-secret.png" width="70%">
 
- ### Step 4: Create a Hubspot Public App
+### Step 6: Setup Authentication Flow
 
-In your developer account, navigate to the "Apps" section.
+Before proceeding with the Quickstart, ensure you have obtained the Access Token using the following steps:
 
-Click on "Create App" and provide the necessary details, including the app name and description.
+1. Create an authorization URL using the following format:
 
+   ```
+   https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES>&redirect_uri=<YOUR_REDIRECT_URI>
+   ```
 
- ### Step 5: Initiate the OAuth Flow
+   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
 
-Move to the auth tab in the created app and set the permissions there .
+2. Paste it in the browser and select your developer test account to intall the app when prompted.
 
-Under the OAuth tab you can find the following details ,
+   <img src="./docs/setup/resources/account-select.png" style="width: 70%;">
 
+3. A code will be displayed in the browser. Copy the code.
 
-client_id: Your app's Client ID.
+   ```
+   Received code: na1-129d-860c-xxxx-xxxx-xxxxxxxxxxxx
+   ```
 
-redirect_uri: The URL users will be redirected to after granting access.
+4. Run the following curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI`> and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
 
-scope: A space-separated list of scopes your app is requesting.
+   - Linux/macOS
 
-![Auth Tab example](docs/setup/resources/auth.png)
+     ```bash
+     curl --request POST \
+     --url https://api.hubapi.com/oauth/v1/token \
+     --header 'content-type: application/x-www-form-urlencoded' \
+     --data 'grant_type=authorization_code&code=<CODE>&redirect_uri=<YOUR_REDIRECT_URI>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
+     ```
 
+   - Windows
 
-### Step   6: Add the redirect URL
-Add your redirect url under the redirect urls.
+     ```bash
+     curl --request POST ^
+     --url https://api.hubapi.com/oauth/v1/token ^
+     --header 'content-type: application/x-www-form-urlencoded' ^
+     --data 'grant_type=authorization_code&code=<CODE>&redirect_uri=<YOUR_REDIRECT_URI>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
+     ```
 
-![Redirect URL ](docs/setup/resources/redirect.png)
+   This command will return the access token necessary for API calls.
 
+   ```json
+   {
+     "token_type": "bearer",
+     "refresh_token": "<Refresh Token>",
+     "access_token": "<Access Token>",
+     "expires_in": 1800
+   }
+   ```
 
-### Step   7: Add the Required Scopes
-
-Go to the relevant API documentation (https://developers.hubspot.com/docs/reference/api/marketing/forms) and find out the required scopes.
-
-
-![Requied Scope doc](docs/setup/resources/scope_doc.png)
-
-
-
-Now come back to the Auth Page and add the required scopes under the Auth tab .
-
-
-
-![Required Scopes](docs/setup/resources/scopes.png)
-
-Now save the app 
-
-![Save the app](docs/setup/resources/save.png)
-
-### Step   8: Obtain the authorization code 
-
-Copy the App installation url and paste it in the web browser. It will prompt you to install  the App and then select your deveper test account.
-
-After selcting the developertest account, you will receive a authorization code displalyed in the browser.
-
-![Obtain the authorization code](docs/setup/resources/authorization_code.png)
-
-### Step   9: Obtain the access token
-
-
-Place your auhtorization code, client_id and client_screct in the folowing comand and execute it in the terminal
-
-'curl --request POST \
-  --url https://api.hubapi.com/oauth/v1/token \
-  --header 'content-type: application/x-www-form-urlencoded' \
-  --data 'grant_type=authorization_code&code=<code>&redirect_uri=http://localhost:9090&client_id=<client_id>&client_secret=<client_secret>'
-
-If the command executes successfully , you will receive the access token from the response.
-
-
-### Step 10 : Obtaining the developer API key .
-
-Follow the instructions at (https://developers.hubspot.com/docs/api/developer-tools-overview#developer-api-keys) to obtain the developer API key.
+5. Store the access token securely for use in your application.
 
 ## Quickstart
 

@@ -18,6 +18,31 @@ These changes are done in order to improve the overall usability, and as workaro
    - **Reason**: Prevented processing errors in tools that struggle with circular dependencies.
 
 
+2. **Updated `EmailField`, `PhoneField`, `MobilePhoneField`, `SingleLineTextField`, `MultiLineTextField`, `NumberField`, `SingleCheckboxField`, `MultipleCheckboxesField`, `DropdownField`, `RadioField`, `DatepickerField`, `FileField` and `PaymentLinkRadioField` Definitions**:
+   - The `dependentFields` property was removed from the `required` list in the above objects.
+   - **Previous Definition:**
+     ```json
+     "EmailField": {
+         "title": "email",
+         "required": ["dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required", "validation"],
+         "type": "object"
+     }
+     ```
+   - **Updated Definition:**
+     ```json
+     "EmailField": {
+         "title": "email",
+         "required": ["fieldType", "hidden", "label", "name", "objectTypeId", "required", "validation"],
+         "type": "object"
+     }
+     ```
+   - **Reason**: The `dependentFields` property is not required when creating forms or retrieving responses.
+
+3. **Change the `url` property of the `servers` object**:
+   - **Original**: `https://api.hubapi.com`
+   - **Updated**: `https://api.hubapi.com/marketing/v3/forms`
+   - **Reason**: This change is made to ensure that all API paths are relative to the versioned base URL (`/marketing/v3/forms`), which improves the consistency and usability of the APIs.
+
 ## OpenAPI cli command
 
 The following command was used to generate the Ballerina client from the OpenAPI specification. The command should be executed from the repository root directory.

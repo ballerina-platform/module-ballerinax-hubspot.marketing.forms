@@ -16,13 +16,13 @@
     "x-hubspot-introduction" : "Use the forms API to create and manage forms in your HubSpot account, which you can then embed on your website to collect form submissions from website visitors."
   },
   "servers" : [ {
-    "url" : "https://api.hubapi.com"
+    "url" : "https://api.hubapi.com/marketing/v3/forms"
   } ],
   "tags" : [ {
     "name" : "Forms"
   } ],
   "paths" : {
-    "/marketing/v3/forms/{formId}" : {
+    "/{formId}" : {
       "get" : {
         "tags" : [ "Forms" ],
         "summary" : "Get a form definition",
@@ -506,7 +506,7 @@
         } ]
       }
     },
-    "/marketing/v3/forms/" : {
+    "/" : {
       "get" : {
         "tags" : [ "Forms" ],
         "summary" : "Get a list of forms",
@@ -998,7 +998,7 @@
       },
       "MultiLineTextField" : {
         "title" : "multi_line_text",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
+        "required" : [ "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1051,7 +1051,7 @@
       },
       "MobilePhoneField" : {
         "title" : "mobile_phone",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required", "validation" ],
+        "required" : ["fieldType", "hidden", "label", "name", "objectTypeId", "required", "validation" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1180,7 +1180,7 @@
       },
       "DatepickerField" : {
         "title" : "datepicker",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
+        "required" : [ "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1367,7 +1367,7 @@
       },
       "DropdownField" : {
         "title" : "dropdown",
-        "required" : [ "defaultValues", "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
+        "required" : [ "defaultValues", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1438,7 +1438,7 @@
       },
       "RadioField" : {
         "title" : "radio",
-        "required" : [ "defaultValues", "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
+        "required" : [ "defaultValues", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1557,7 +1557,7 @@
       },
       "EmailField" : {
         "title" : "email",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required", "validation" ],
+        "required" : [ "fieldType", "hidden", "label", "name", "objectTypeId", "required", "validation" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1768,7 +1768,7 @@
       },
       "FileField" : {
         "title" : "file",
-        "required" : [ "allowMultipleFiles", "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
+        "required" : [ "allowMultipleFiles", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1844,7 +1844,7 @@
       },
       "NumberField" : {
         "title" : "number",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
+        "required" : [ "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1900,7 +1900,7 @@
       },
       "PaymentLinkRadioField" : {
         "title" : "payment_link_radio",
-        "required" : [ "defaultValues", "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
+        "required" : [ "defaultValues", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -1978,7 +1978,7 @@
       },
       "MultipleCheckboxesField" : {
         "title" : "multiple_checkboxes",
-        "required" : [ "defaultValues", "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
+        "required" : [ "defaultValues", "fieldType", "hidden", "label", "name", "objectTypeId", "options", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -2085,7 +2085,7 @@
       },
       "SingleCheckboxField" : {
         "title" : "single_checkbox",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
+        "required" : [ "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -2242,7 +2242,7 @@
       },
       "PhoneField" : {
         "title" : "phone",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required", "useCountryCodeSelect", "validation" ],
+        "required" : [  "fieldType", "hidden", "label", "name", "objectTypeId", "required", "useCountryCodeSelect", "validation" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {
@@ -2302,7 +2302,7 @@
       },
       "SingleLineTextField" : {
         "title" : "single_line_text",
-        "required" : [ "dependentFields", "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
+        "required" : [ "fieldType", "hidden", "label", "name", "objectTypeId", "required" ],
         "type" : "object",
         "properties" : {
           "objectTypeId" : {

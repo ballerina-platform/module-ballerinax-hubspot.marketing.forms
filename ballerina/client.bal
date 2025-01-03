@@ -11,7 +11,7 @@ public isolated client class Client {
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com") returns error? {
+    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com/marketing/v3/forms") returns error? {
         http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, timeout: config.timeout, forwarded: config.forwarded, poolConfig: config.poolConfig, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, validation: config.validation};
         do {
             if config.http1Settings is ClientHttp1Settings {
@@ -50,8 +50,8 @@ public isolated client class Client {
     # + formId - The ID of the form to archive.
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function delete marketing/v3/forms/[string formId](map<string|string[]> headers = {}) returns json|error {
-        string resourcePath = string `/marketing/v3/forms/${getEncodedUri(formId)}`;
+    resource isolated function delete [string formId](map<string|string[]> headers = {}) returns json|error {
+        string resourcePath = string `/${getEncodedUri(formId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -60,8 +60,13 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    resource isolated function get marketing/v3/forms(map<string|string[]> headers = {}, *GetMarketingV3Forms_getpageQueries queries) returns CollectionResponseFormDefinitionBaseForwardPaging|error {
-        string resourcePath = string `/marketing/v3/forms/`;
+    # Get a list of forms
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - successful operation 
+    resource isolated function get .(map<string|string[]> headers = {}, *GetMarketingV3Forms_getpageQueries queries) returns CollectionResponseFormDefinitionBaseForwardPaging|error {
+        string resourcePath = string `/`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -78,8 +83,8 @@ public isolated client class Client {
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - successful operation 
-    resource isolated function get marketing/v3/forms/[string formId](map<string|string[]> headers = {}, *GetMarketingV3FormsFormid_getbyidQueries queries) returns FormDefinitionBase|error {
-        string resourcePath = string `/marketing/v3/forms/${getEncodedUri(formId)}`;
+    resource isolated function get [string formId](map<string|string[]> headers = {}, *GetMarketingV3FormsFormid_getbyidQueries queries) returns FormDefinitionBase|error {
+        string resourcePath = string `/${getEncodedUri(formId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -94,8 +99,8 @@ public isolated client class Client {
     # + formId - The ID of the form to update.
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function patch marketing/v3/forms/[string formId](HubSpotFormDefinitionPatchRequest payload, map<string|string[]> headers = {}) returns FormDefinitionBase|error {
-        string resourcePath = string `/marketing/v3/forms/${getEncodedUri(formId)}`;
+    resource isolated function patch [string formId](HubSpotFormDefinitionPatchRequest payload, map<string|string[]> headers = {}) returns FormDefinitionBase|error {
+        string resourcePath = string `/${getEncodedUri(formId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -107,8 +112,12 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    resource isolated function post marketing/v3/forms(FormDefinitionCreateRequestBase payload, map<string|string[]> headers = {}) returns FormDefinitionBase|error {
-        string resourcePath = string `/marketing/v3/forms/`;
+    # Create a form
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - successful operation 
+    resource isolated function post .(FormDefinitionCreateRequestBase payload, map<string|string[]> headers = {}) returns FormDefinitionBase|error {
+        string resourcePath = string `/`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -124,8 +133,8 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function put marketing/v3/forms/[string formId](HubSpotFormDefinition payload, map<string|string[]> headers = {}) returns FormDefinitionBase|error {
-        string resourcePath = string `/marketing/v3/forms/${getEncodedUri(formId)}`;
+    resource isolated function put [string formId](HubSpotFormDefinition payload, map<string|string[]> headers = {}) returns FormDefinitionBase|error {
+        string resourcePath = string `/${getEncodedUri(formId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;

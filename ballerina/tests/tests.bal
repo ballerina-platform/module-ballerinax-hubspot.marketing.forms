@@ -23,277 +23,224 @@ configurable string refreshToken = ?;
 
 
 ConnectionConfig config = {auth : auth};
-final Client baseClient = check new Client(config, serviceUrl = "https://api.hubapi.com");
+final Client baseClient = check new Client(config, serviceUrl = "https://api.hubapi.com/marketing/v3/forms");
 
 
 final time:Utc currentUtc = time:utcNow();
 
-final string formId = "637b69f2-e2cc-4908-9094-8a3fff4f20f9";
+final string formId = "4b85ae4d-eb2f-4f1a-b712-25702d0f68f1";
 
-final string deleteFormId = "cc1f5a3e-8dd3-4a8a-a4ae-da37ee90ccdb";
+final string deleteFormId = "d167c0f7-d042-49ef-a162-1cf548cc170b";
 
 
-
+// 4b85ae4d-eb2f-4f1a-b712-25702d0f68f1
+// d167c0f7-d042-49ef-a162-1cf548cc170b
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
 }
 isolated function testGetForm() returns  error? {
 
-    CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/marketing/v3/forms.get();
+    CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
 
     test:assertTrue(response?.results.length() > 0);
-    io:println(response);
-
 }
 
-// @test:Config {}
-// isolated function testCreateForm() returns error? {
-//     FormDefinitionBase response = check baseClient->/marketing/v3/forms.post(
-//         {
-//             formType: "hubspot",
-//             name: "form" + currentUtc.toString(),
-//             createdAt: "2024-12-23T07:13:28.102Z",
-//             updatedAt: "2024-12-23T07:13:28.102Z",
-//             archived: false,
-//             fieldGroups: [
-//                 {
-//                     groupType: "default_group",
-//                     richTextType: "text",
-//                     fields: [
-//                         {
-//                             objectTypeId: "0-1",
-//                             name: "email",
-//                             label: "Email",
-//                             required: true,
-//                             hidden: false,
-//                             fieldType: "email",
-//                             validation: {
-//                                 blockedEmailDomains: [],
-//                                 useDefaultBlockList: false
-//                             },
-//                             dependentFields: []
+@test:Config {}
+isolated function testCreateForm() returns error? {
+    FormDefinitionBase response = check baseClient->/.post(
+        {
+            formType: "hubspot",
+            name: "form" + currentUtc.toString(),
+            createdAt: "2024-12-23T07:13:28.102Z",
+            updatedAt: "2024-12-23T07:13:28.102Z",
+            archived: false,
+            fieldGroups: [
+                {
+                    groupType: "default_group",
+                    richTextType: "text",
+                    fields: [
+                        {
+                            objectTypeId: "0-1",
+                            name: "email",
+                            label: "Email",
+                            required: true,
+                            hidden: false,
+                            fieldType: "email",
+                            validation: {
+                                blockedEmailDomains: [],
+                                useDefaultBlockList: false
+                            }
                                
-//                         }
-//                     ]
-//                 }
-//             ],
-//             configuration: {
-//                 language: "en",
-//                 createNewContactForNewEmail: true,
-//                 editable: true,
-//                 allowLinkToResetKnownValues: true,
-//                 lifecycleStages: [],
-//                 postSubmitAction: {
-//                     'type: "thank_you",
-//                     value: "Thank you for subscribing!"
-//                 },
-//                 prePopulateKnownValues: true,
-//                 cloneable: true,
-//                 notifyContactOwner: true,
-//                 recaptchaEnabled: false,
-//                 archivable: true,
-//                 notifyRecipients: ["example@example.com"]
-//             },
-//             displayOptions: {
-//                 renderRawHtml: false,
-//                 cssClass: "hs-form stacked",
-//                 theme: "default_style",
-//                 submitButtonText: "Submit",
-//                 style: {
-//                     labelTextSize: "13px",
-//                     legalConsentTextColor: "#33475b",
-//                     fontFamily: "arial, helvetica, sans-serif",
-//                     legalConsentTextSize: "14px",
-//                     backgroundWidth: "100%",
-//                     helpTextSize: "11px",
-//                     submitFontColor: "#ffffff",
-//                     labelTextColor: "#33475b",
-//                     submitAlignment: "left",
-//                     submitSize: "12px",
-//                     helpTextColor: "#7C98B6",
-//                     submitColor: "#ff7a59"
-//                 }
-//             },
-//             legalConsentOptions: {
-//                 'type: "none"
-//             }
-//         }
-//     );
+                        }
+                    ]
+                }
+            ],
+            configuration: {
+                language: "en",
+                createNewContactForNewEmail: true,
+                editable: true,
+                allowLinkToResetKnownValues: true,
+                lifecycleStages: [],
+                postSubmitAction: {
+                    'type: "thank_you",
+                    value: "Thank you for subscribing!"
+                },
+                prePopulateKnownValues: true,
+                cloneable: true,
+                notifyContactOwner: true,
+                recaptchaEnabled: false,
+                archivable: true,
+                notifyRecipients: ["example@example.com"]
+            },
+            displayOptions: {
+                renderRawHtml: false,
+                cssClass: "hs-form stacked",
+                theme: "default_style",
+                submitButtonText: "Submit",
+                style: {
+                    labelTextSize: "13px",
+                    legalConsentTextColor: "#33475b",
+                    fontFamily: "arial, helvetica, sans-serif",
+                    legalConsentTextSize: "14px",
+                    backgroundWidth: "100%",
+                    helpTextSize: "11px",
+                    submitFontColor: "#ffffff",
+                    labelTextColor: "#33475b",
+                    submitAlignment: "left",
+                    submitSize: "12px",
+                    helpTextColor: "#7C98B6",
+                    submitColor: "#ff7a59"
+                }
+            },
+            legalConsentOptions: {
+                'type: "none"
+            }
+        }
+    );
 
-//     test:assertTrue(response?.id !is "");
-//     io:println(response);
-//     io:println(response?.id);
+    test:assertTrue(response?.id !is "");
+    io:println(response?.id);
 
     
 
-// }
+}
 
 
-// @test:Config {}
-// isolated function testGetFormById() returns error? {
+@test:Config {}
+isolated function testGetFormById() returns error? {
 
-//                 allowLinkToResetKnownValues: true,
-//                 lifecycleStages: [],
-//                 postSubmitAction: {
-//                     'type: "thank_you",
-//                     value: "Thank you for subscribing!"
-//                 },
-//                 prePopulateKnownValues: true,
-//                 cloneable: true,
-//                 notifyContactOwner: true,
-//                 recaptchaEnabled: false,
-//                 archivable: true,
-//                 notifyRecipients: ["example@example.com"]
-//             },
-//             displayOptions: {
-//                 renderRawHtml: false,
-//                 cssClass: "hs-form stacked",
-//                 theme: "default_style",
-//                 submitButtonText: "Submit",
-//                 style: {
-//                     labelTextSize: "13px",
-//                     legalConsentTextColor: "#33475b",
-//                     fontFamily: "arial, helvetica, sans-serif",
-//                     legalConsentTextSize: "14px",
-//                     backgroundWidth: "100%",
-//                     helpTextSize: "11px",
-//                     submitFontColor: "#ffffff",
-//                     labelTextColor: "#33475b",
-//                     submitAlignment: "left",
-//                     submitSize: "12px",
-//                     helpTextColor: "#7C98B6",
-//                     submitColor: "#ff7a59"
-//                 }
-//             },
-//             legalConsentOptions: {
-//                 'type: "none"
-//             }
-//         }
-//     );
+    FormDefinitionBase response = check baseClient->/[formId]();
 
-//     test:assertTrue(response?.id !is "");
-//     io:println(response);
-//     io:println(response?.id);
- 
-
-// }
-
-// @test:Config {}
-// isolated function testGetFormById() returns error? {
-
-//     FormDefinitionBase response = check baseClient->/marketing/v3/forms/[formId]();
-
-//     test:assertTrue(response?.id == formId);
+    test:assertTrue(response?.id == formId);
 
 
-// }
+}
 
-// @test:Config {}
-// isolated function testUpdateEntireForm() returns error? {
+@test:Config {}
+isolated function testUpdateEntireForm() returns error? {
 
-//     FormDefinitionBase response = check baseClient->/marketing/v3/forms/[formId].put(
-//          {
-//             formType: "hubspot",
-//             id: formId,
-//             name: "form" + currentUtc.toString() + "updated",
-//             createdAt: "2024-12-23T07:13:28.102Z",
-//             updatedAt: "2024-12-23T07:13:28.102Z",
-//             archived: true,
-//             archivedAt: "2024-12-23T07:13:28.102Z",
-//             fieldGroups: [
-//                 {
-//                     groupType: "default_group",
-//                     richTextType: "text",
-//                     fields: [
-//                         {
-//                             objectTypeId: "0-1",
-//                             name: "email",
-//                             label: "Email",
-//                             required: true,
-//                             hidden: false,
-//                             fieldType: "email",
-//                             validation: {
-//                                 blockedEmailDomains: [],
-//                                 useDefaultBlockList: false
-//                             },
-//                             dependentFields: []
+    FormDefinitionBase response = check baseClient->/[formId].put(
+         {
+            formType: "hubspot",
+            id: formId,
+            name: "form" + currentUtc.toString() + "updated",
+            createdAt: "2024-12-23T07:13:28.102Z",
+            updatedAt: "2024-12-23T07:13:28.102Z",
+            archived: true,
+            archivedAt: "2024-12-23T07:13:28.102Z",
+            fieldGroups: [
+                {
+                    groupType: "default_group",
+                    richTextType: "text",
+                    fields: [
+                        {
+                            objectTypeId: "0-1",
+                            name: "email",
+                            label: "Email",
+                            required: true,
+                            hidden: false,
+                            fieldType: "email",
+                            validation: {
+                                blockedEmailDomains: [],
+                                useDefaultBlockList: false
+                            }
                                
-//                         }
-//                     ]
-//                 }
-//             ],
-//             configuration: {
-//                 language: "en",
-//                 createNewContactForNewEmail: true,
-//                 editable: true,
-//                 allowLinkToResetKnownValues: true,
-//                 lifecycleStages: [],
-//                 postSubmitAction: {
-//                     'type: "thank_you",
-//                     value: "Thank you for subscribing!"
-//                 },
-//                 prePopulateKnownValues: true,
-//                 cloneable: true,
-//                 notifyContactOwner: true,
-//                 recaptchaEnabled: false,
-//                 archivable: true,
-//                 notifyRecipients: ["example@example.com"]
-//             },
-//             displayOptions: {
-//                 renderRawHtml: false,
-//                 cssClass: "hs-form stacked",
-//                 theme: "default_style",
-//                 submitButtonText: "Submit",
-//                 style: {
-//                     labelTextSize: "13px",
-//                     legalConsentTextColor: "#33475b",
-//                     fontFamily: "arial, helvetica, sans-serif",
-//                     legalConsentTextSize: "14px",
-//                     backgroundWidth: "100%",
-//                     helpTextSize: "11px",
-//                     submitFontColor: "#ffffff",
-//                     labelTextColor: "#33475b",
-//                     submitAlignment: "left",
-//                     submitSize: "12px",
-//                     helpTextColor: "#7C98B6",
-//                     submitColor: "#ff7a59"
-//                 }
-//             },
-//             legalConsentOptions: {
-//                 'type: "none"
-//             }
-//         }
-//     );
+                        }
+                    ]
+                }
+            ],
+            configuration: {
+                language: "en",
+                createNewContactForNewEmail: true,
+                editable: true,
+                allowLinkToResetKnownValues: true,
+                lifecycleStages: [],
+                postSubmitAction: {
+                    'type: "thank_you",
+                    value: "Thank you for subscribing!"
+                },
+                prePopulateKnownValues: true,
+                cloneable: true,
+                notifyContactOwner: true,
+                recaptchaEnabled: false,
+                archivable: true,
+                notifyRecipients: ["example@example.com"]
+            },
+            displayOptions: {
+                renderRawHtml: false,
+                cssClass: "hs-form stacked",
+                theme: "default_style",
+                submitButtonText: "Submit",
+                style: {
+                    labelTextSize: "13px",
+                    legalConsentTextColor: "#33475b",
+                    fontFamily: "arial, helvetica, sans-serif",
+                    legalConsentTextSize: "14px",
+                    backgroundWidth: "100%",
+                    helpTextSize: "11px",
+                    submitFontColor: "#ffffff",
+                    labelTextColor: "#33475b",
+                    submitAlignment: "left",
+                    submitSize: "12px",
+                    helpTextColor: "#7C98B6",
+                    submitColor: "#ff7a59"
+                }
+            },
+            legalConsentOptions: {
+                'type: "none"
+            }
+        }
+    );
 
-//     test:assertTrue(response?.id == formId);
-//     test:assertEquals(response?.archived, true);
+    test:assertTrue(response?.id == formId);
+    test:assertEquals(response?.archived, true);
 
-// }
+}
 
-// @test:Config {}
-// isolated function testUpdateForm() returns error? {
+@test:Config {}
+isolated function testUpdateForm() returns error? {
 
-//     FormDefinitionBase response = check baseClient->/marketing/v3/forms/[formId].patch(
-//         {
-//             name: "form2"
-//         }
-//     );
+    FormDefinitionBase response = check baseClient->/[formId].patch(
+        {
+            name: "form2"
+        }
+    );
 
-//     test:assertTrue(response?.id == formId);
-//     test:assertEquals(response?.name, "form2");
+    test:assertTrue(response?.id == formId);
+    test:assertEquals(response?.name, "form2");
 
-// }
+}
 
-// @test:Config {}
-// isolated function testDeleteForm() returns error? {
+@test:Config {}
+isolated function testDeleteForm() returns error? {
 
-//     json response = check baseClient->/marketing/v3/forms/[deleteFormId].delete();
+    json response = check baseClient->/[deleteFormId].delete();
 
-//     io:println(response);
-//     test:assertTrue(response == ());
+    io:println(response);
+    test:assertTrue(response == ());
 
-// }
+}
 
       
 

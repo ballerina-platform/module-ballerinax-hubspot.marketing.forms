@@ -64,7 +64,7 @@ public type MultiLineTextField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -88,7 +88,7 @@ public type MobilePhoneField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -146,7 +146,7 @@ public type DatepickerField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -214,7 +214,7 @@ public type DropdownField record {
     # The values selected by default. Those values will be submitted unless the customer modifies them.
     string[] defaultValues;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -240,7 +240,7 @@ public type RadioField record {
     # The values selected by default. Those values will be submitted unless the customer modifies them.
     string[] defaultValues;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -281,7 +281,7 @@ public type EmailField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -389,7 +389,7 @@ public type FileField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -435,7 +435,7 @@ public type NumberField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -454,7 +454,7 @@ public type PaymentLinkRadioField record {
     EnumeratedFieldOption[] options;
     string description?;
     string[] defaultValues;
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     string label;
     "payment_link_radio" fieldType;
     boolean required;
@@ -475,7 +475,7 @@ public type MultipleCheckboxesField record {
     # The values selected by default. Those values will be submitted unless the customer modifies them.
     string[] defaultValues;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # Determines how the field will be displayed and validated.
@@ -536,7 +536,7 @@ public type SingleCheckboxField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # Determines how the field will be displayed and validated.
@@ -609,7 +609,7 @@ public type PhoneField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.
@@ -634,7 +634,7 @@ public type SingleLineTextField record {
     # Additional text helping the customer to complete the field.
     string description?;
     # A list of other fields to make visible based on the value filled in for this field.
-    DependentField[] dependentFields;
+    DependentField[] dependentFields?;
     # The main label for the form field.
     string label;
     # The prompt text showing when the field isn't filled in.

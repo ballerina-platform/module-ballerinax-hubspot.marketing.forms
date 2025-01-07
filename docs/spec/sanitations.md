@@ -6,8 +6,7 @@ _Edition_: Swan Lake
 # Sanitation for OpenAPI specification
 
 This document records the sanitation done on top of the official OpenAPI specification from HubSpot Marketing Forms. 
-The OpenAPI specification is obtained from (TODO: Add source link).
-These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
+The OpenAPI specification is obtained from ([Hubspot Marketing Forms](https://developers.hubspot.com/docs/reference/api/marketing/forms)).
 
 [//]: # (TODO: Add sanitation details)
 1. **Removed Circular References**:

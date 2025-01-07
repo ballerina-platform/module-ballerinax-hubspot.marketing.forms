@@ -1,5 +1,5 @@
 [package]
-org = "pasindusa"
+org = "wso2"
 name = "sign_up_form"
 version = "0.1.0"
 distribution = "2201.10.3"

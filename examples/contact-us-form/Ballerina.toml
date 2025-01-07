@@ -1,6 +1,6 @@
 [package]
-org = "pasindusa"
-name = "example_1"
+org = "wso2"
+name = "contact_us_form"
 version = "0.1.0"
 distribution = "2201.10.3"
 

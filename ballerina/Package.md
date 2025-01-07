@@ -1,8 +1,8 @@
 ## Overview
 
-[HubSpot](https://www.hubspot.com/our-story) is a customer platform with all the software, integrations, and resources users need to connect thier marketing, sales, and customer service.
+[HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
-The `hubspot.marketing.forms` package offers APIs to connect and interact with [Marketing Forms API](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, specifically based on HubSpot API v3.
+The `hubspot.marketing.forms` offers APIs to connect and interact with the [Marketing Forms](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, specifically based on the [API v3](https://github.com/HubSpot/HubSpot-public-api-spec-collection/blob/main/PublicApiSpecs/Marketing/Forms/Rollouts/144909/v3/forms.json).
 
 >**_NOTE:_**             
 This package may be changed in the future based on the HubSpot API changes, since it is currently under development and is subject to change based on testing and feedback. By using this package, you are agreeing to accept any future changes that might occur and understand the risk associated with testing an unstable API.
@@ -22,54 +22,55 @@ If you don't have a HubSpot Developer Account you can sign up to a free account 
 
 Within app developer accounts, you can create developer test accounts to test apps and integrations without affecting any real HubSpot data.
 
-**_These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts._**
+**Note:** These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
 
 1. Go to Test accounts section from the left sidebar.
 
-<img src="../docs/setup/resources/test-account.png" width="70%">
+![Hubspot Developer Portal](../docs/setup/resources/test-account.png)
 
 2. Click on the `Create developer test account` button on the top right corner.
 
-<img src="../docs/setup/resources/create-test-account.png" width="70%">
+![Hubspot Developer Test Account](../docs/setup/resources/create-test-account.png)
 
 3. In the pop-up window, provide a name for the test account and click on the `Create` button.
 
-<img src="../docs/setup/resources/create-account.png" width="70%">
+![Hubspot Developer Test Account](../docs/setup/resources/create-account.png)
 
 4. You will see the newly created test account in the list of test accounts.
 
-<img src="../docs/setup/resources/test-account-portal.png" width="70%">
+![Hubspot Developer Test Account](../docs/setup/resources/test-account-portal.png)
+
 
 ### Step 3: Create a HubSpot App
 
 1. Now navigate to the `Apps` section from the left sidebar and click on the `Create app` button on the top right corner.
-<img src="../docs/setup/resources/create-app.png" width="70%">
+
+![Hubspot Create App](../docs/setup/resources/create-app.png)
 
 2. Provide a public app name and description for your app.
 
-<img src="../docs/setup/resources/app-name-desc.png" width="70%">
+![Hubspot Create App](./docs/setup/resources/app-name-desc.png)
 
-### Step 4: Setup Authentication
+### Step 4: Configure the Authentication Flow
 
 1. Move to the `Auth` tab.
 
-<img src="../docs/setup/resources/config-auth.png" width="70%">
-
+![Hubspot Developer Config Auth](../docs/setup/resources/config-auth.png)
 
 2. In the `Scopes` section, add the following scopes for your app using the `Add new scopes` button.
    - `forms`
 
-<img src="../docs/setup/resources/add-scopes.png" width="70%">
+![Hubspot Developer App Add Scopes](../docs/setup/resources/add-scopes.png)
 
-3. In the `Redirect URL` section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can use localhost for testing purposes. Then hit the `Create App` button.
+3. In the `Redirect URL` section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can also use `localhost` addresses for local development purposes. Then click the `Create App` button.
 
-<img src="../docs/setup/resources/redirect-url.png" width="70%">
+![Hubspot Create Developer App](../docs/setup/resources/redirect-url.png)
 
 ### Step 5: Get the Client ID and Client Secret
 
 Navigate to the `Auth` tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
 
-<img src="../docs/setup/resources/client-id-secret.png" width="70%">
+![Hubspot Get Credentials](../docs/setup/resources/client-id-secret.png)
 
 ### Step 6: Setup Authentication Flow
 
@@ -83,9 +84,11 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
    Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
 
+> **NOTE:** If you are using a `localhost` redirect url, make sure to have a listener running at the relevant port before executing the next step.
+
 2. Paste it in the browser and select your developer test account to intall the app when prompted.
 
-   <img src="../docs/setup/resources/account-select.png" style="width: 70%;">
+![Hubspot Get Auth Code](../docs/setup/resources/account-select.png)
 
 3. A code will be displayed in the browser. Copy the code.
 
@@ -167,21 +170,130 @@ import ballerina/oauth2;
         }
     };
 
-    final hsmforms:Client hsmformsClient = check new (hsmformsConfig, "https://api.hubapi.com");
+    final hsmforms:Client hsmformsClient = check new (hsmformsConfig);
     ```
 
 ### Step 3: Invoke the connector operation
 
 Now, utilize the available connector operations. A sample usecase is shown below.
 
-#### Create a Marketing Event
+#### Create a Marketing Form
     
 ```ballerina
 public function main() returns error? {
-    hsmforms:CollectionResponseFormDefinitionBaseForwardPaging forms = check baseClient->/marketing/v3/forms.get();
+
+   hsforms:FormDefinitionCreateRequestBase inputFormDefinition = {
+            formType: "hubspot",
+            name: "for",
+            createdAt: "2024-12-23T07:13:28.102Z",
+            updatedAt: "2024-12-23T07:13:28.102Z",
+            archived: false,
+            fieldGroups: [
+                {
+                    groupType: "default_group",
+                    richTextType: "text",
+                    fields: [
+                        {
+                            objectTypeId: "0-1",
+                            name: "email",
+                            label: "Email",
+                            required: true,
+                            hidden: false,
+                            fieldType: "email",
+                            validation: {
+                                blockedEmailDomains: [],
+                                useDefaultBlockList: false
+                            }
+                               
+                        }
+                    ]
+                },
+                 {
+      groupType: "default_group",
+      richTextType: "text",
+      fields: [
+        {
+          objectTypeId: "0-1",
+          name: "firstname",
+          label: "First name",
+          required: true,
+          hidden: false,
+          fieldType: "single_line_text"
+        },
+        {
+          objectTypeId: "0-1",
+          name: "lastname",
+          label: "Last name",
+          required: true,
+          hidden: false,
+          fieldType: "single_line_text"
+        }
+      ]
+    },
+     {
+        groupType: "default_group",
+      richTextType: "text",
+      fields: [
+        {
+            objectTypeId: "0-1",
+            name: "message",
+            label: "Message",
+            required: true,
+            hidden: false,
+            fieldType: "multi_line_text"
+        }
+      ]
+
+    }
+            ],
+            configuration: {
+                language: "en",
+                createNewContactForNewEmail: true,
+                editable: true,
+                allowLinkToResetKnownValues: true,
+                lifecycleStages: [],
+                postSubmitAction: {
+                    'type: "thank_you",
+                    value: "Thank you for subscribing!"
+                },
+                prePopulateKnownValues: true,
+                cloneable: true,
+                notifyContactOwner: true,
+                recaptchaEnabled: false,
+                archivable: true,
+                notifyRecipients: ["example@example.com"]
+            },
+            displayOptions: {
+                renderRawHtml: false,
+                cssClass: "hs-form stacked",
+                theme: "default_style",
+                submitButtonText: "Submit",
+                style: {
+                    labelTextSize: "13px",
+                    legalConsentTextColor: "#33475b",
+                    fontFamily: "arial, helvetica, sans-serif",
+                    legalConsentTextSize: "14px",
+                    backgroundWidth: "100%",
+                    helpTextSize: "11px",
+                    submitFontColor: "#ffffff",
+                    labelTextColor: "#33475b",
+                    submitAlignment: "left",
+                    submitSize: "12px",
+                    helpTextColor: "#7C98B6",
+                    submitColor: "#ff7a59"
+                }
+            },
+            legalConsentOptions: {
+                'type: "none"
+            }
+        };
+
+        
+    hsforms:FormDefinitionBase response = check baseClient->/.post(
+        inputFormDefinition     
+    );
 }
 ```
-
 
 ## Examples
 

@@ -5,9 +5,9 @@ import ballerina/io;
 
 
 
-string clientId = "";
-string clientSecret = "";
-string refreshToken = "";
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string refreshToken = ?;
 
 forms:OAuth2RefreshTokenGrantConfig auth = {
     clientId,
@@ -191,6 +191,14 @@ public function main() returns error?{
 
     forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
     io:println("Form is created at" + getResponse?.createdAt);
+
+    forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
+    io:println("Form is created at" + getResponse?.createdAt);
+
+
+
+
+
 
     json deleteResponse = check baseClient->/[formId].delete();
 

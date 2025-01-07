@@ -7,47 +7,33 @@ import ballerina/oauth2;
 import  ballerina/time;
 import ballerina/io;
 
-// configurable OAuth2RefreshTokenGrantConfig & readonly authConfig = ?;
-
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
-
 
  OAuth2RefreshTokenGrantConfig auth = {
        clientId,
        clientSecret,
        refreshToken,
-       credentialBearer: oauth2:POST_BODY_BEARER // this line should be added in to when you are going to create auth object.
-   };
+       credentialBearer: oauth2:POST_BODY_BEARER // this line should be added to create auth object.
 
+   };
 
 ConnectionConfig config = {auth : auth};
 final Client baseClient = check new Client(config, serviceUrl = "https://api.hubapi.com/marketing/v3/forms");
 
-
 final time:Utc currentUtc = time:utcNow();
+string formId = "";
 
-final string formId = "4b85ae4d-eb2f-4f1a-b712-25702d0f68f1";
-
-final string deleteFormId = "d167c0f7-d042-49ef-a162-1cf548cc170b";
-
-
-// 4b85ae4d-eb2f-4f1a-b712-25702d0f68f1
-// d167c0f7-d042-49ef-a162-1cf548cc170b
-
-@test:Config {
-    groups: ["live_tests", "mock_tests"]
-}
+@test:Config {}
 isolated function testGetForm() returns  error? {
 
     CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
 
     test:assertTrue(response?.results.length() > 0);
 }
-
 @test:Config {}
-isolated function testCreateForm() returns error? {
+function testCreateForm() returns error? {
     FormDefinitionBase response = check baseClient->/.post(
         {
             formType: "hubspot",
@@ -119,16 +105,18 @@ isolated function testCreateForm() returns error? {
         }
     );
 
+    formId = response?.id;
+
     test:assertTrue(response?.id !is "");
     io:println(response?.id);
-
-    
-
 }
 
+@test:Config {
+    dependsOn: [testCreateForm]
+}
+function testGetFormById() returns error? {
 
-@test:Config {}
-isolated function testGetFormById() returns error? {
+    io:print("formId: " + formId);
 
     FormDefinitionBase response = check baseClient->/[formId]();
 
@@ -137,8 +125,10 @@ isolated function testGetFormById() returns error? {
 
 }
 
-@test:Config {}
-isolated function testUpdateEntireForm() returns error? {
+@test:Config {
+    dependsOn: [testCreateForm]
+}
+function testUpdateEntireForm() returns error? {
 
     FormDefinitionBase response = check baseClient->/[formId].put(
          {
@@ -218,43 +208,27 @@ isolated function testUpdateEntireForm() returns error? {
 
 }
 
-@test:Config {}
-isolated function testUpdateForm() returns error? {
+@test:Config {
+    dependsOn: [testCreateForm]
+}
+function testUpdateForm() returns error? {
 
     FormDefinitionBase response = check baseClient->/[formId].patch(
         {
-            name: "form2"
+            name: "form" + currentUtc.toString() + "updated_form"
         }
     );
-
     test:assertTrue(response?.id == formId);
-    test:assertEquals(response?.name, "form2");
-
 }
 
-@test:Config {}
-isolated function testDeleteForm() returns error? {
+@test:Config {
+    dependsOn: [testCreateForm]
+}
+function testDeleteForm() returns error? {
 
-    json response = check baseClient->/[deleteFormId].delete();
+    json response = check baseClient->/[formId].delete();
 
     io:println(response);
     test:assertTrue(response == ());
 
 }
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

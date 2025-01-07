@@ -21,9 +21,14 @@ forms:ConnectionConfig config = {
     auth: auth
 };
 
+
 final forms:Client baseClient = check  new (config); 
 
+
+
 public function main() returns error?{
+
+
      forms:FormDefinitionCreateRequestBase inputFormDefinition = {
             formType: "hubspot",
             name: "Sign Up Form",
@@ -100,6 +105,8 @@ public function main() returns error?{
     );
     string formId = response?.id;
     io:println("Form is created  with ID:  " + formId);
+
+
 
     forms:FormDefinitionBase updateResponse = check baseClient->/[formId].patch(
         {
@@ -189,8 +196,6 @@ public function main() returns error?{
 
     io:println("Form is updated at" + updateResponse?.updatedAt);
 
-    forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
-    io:println("Form is created at" + getResponse?.createdAt);
 
     forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
     io:println("Form is created at" + getResponse?.createdAt);
@@ -203,5 +208,12 @@ public function main() returns error?{
     json deleteResponse = check baseClient->/[formId].delete();
 
     if (deleteResponse == null){
-        io:println("Form is deleted");} 
+        io:println("Form is deleted");}
+
+
+   
+
+
+
+    
 };

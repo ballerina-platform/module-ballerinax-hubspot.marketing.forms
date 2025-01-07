@@ -301,7 +301,7 @@ modules = [
 ]
 
 [[package]]
-org = "pasindusa"
+org = "wso2"
 name = "sign_up_form"
 version = "0.1.0"
 dependencies = [
@@ -311,6 +311,6 @@ dependencies = [
 	{org = "ballerinax", name = "hubspot.marketing.forms"}
 ]
 modules = [
-	{org = "pasindusa", packageName = "sign_up_form", moduleName = "sign_up_form"}
+	{org = "wso2", packageName = "sign_up_form", moduleName = "sign_up_form"}
 ]
 

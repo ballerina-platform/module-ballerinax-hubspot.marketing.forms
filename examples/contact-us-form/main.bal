@@ -23,6 +23,8 @@ forms:ConnectionConfig config = {
 
 final forms:Client baseClient = check  new (config); 
 
+
+
 public function main() returns error?{
 
 
@@ -193,8 +195,6 @@ public function main() returns error?{
 
     io:println("Form is updated at" + updateResponse?.updatedAt);
 
-    forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
-    io:println("Form is created at" + getResponse?.createdAt);
 
     forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
     io:println("Form is created at" + getResponse?.createdAt);
@@ -208,5 +208,11 @@ public function main() returns error?{
 
     if (deleteResponse == null){
         io:println("Form is deleted");}
+
+
+   
+
+
+
     
 };

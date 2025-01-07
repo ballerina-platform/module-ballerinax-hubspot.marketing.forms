@@ -1,16 +1,31 @@
 # Examples
 
-The `ballerinax/hubspot.marketing.forms` connector provides practical examples illustrating usage in various scenarios.
+The `HubSpot Marketing Forms API v3` provides practical examples illustrating usage in various scenarios. Explore these examples, covering use cases like user registration, data management, and metadata tracking.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. `Contact Us Form Integration` - Build dynamic 'Contact Us' forms to handle customer inquiries efficiently, enabling seamless communication and accurate data collection.
+
+2. `Sign Up Form Integration` - Create, update, and manage user registration forms with customizable fields such as name, email, and consent checkboxes to streamline user onboarding.
+
+
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+### 1. Setup Hubspot account
 
-## Running an example
+Refer to the `Setup guide` in `README.md` file to set up your hubspot
+account, if you do not have one.
+
+### 2. Configuration
+
+Update your Zendesk account related configurations in the `Config.toml` file in the example root directory:
+
+```toml
+clientId = ''
+clientSecret = ''
+refreshToken = ''
+```
+
+## Running an Example
 
 Execute the following commands to build an example from the source:
 
@@ -26,7 +41,7 @@ Execute the following commands to build an example from the source:
     bal run
     ```
 
-## Building the examples with the local module
+## Building the Examples with the Local Module
 
 **Warning**: Due to the absence of support for reading local repositories for single Ballerina files, the Bala of the module is manually written to the central repository as a workaround. Consequently, the bash script may modify your local Ballerina repositories.
 

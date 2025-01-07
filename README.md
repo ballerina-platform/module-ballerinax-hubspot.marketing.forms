@@ -190,7 +190,7 @@ Now, utilize the available connector operations. A sample usecase is shown below
 ```ballerina
 public function main() returns error? {
 
-   forms:FormDefinitionCreateRequestBase inputFormDefinition = {
+   hsforms:FormDefinitionCreateRequestBase inputFormDefinition = {
             formType: "hubspot",
             name: "for",
             createdAt: "2024-12-23T07:13:28.102Z",
@@ -296,8 +296,8 @@ public function main() returns error? {
             }
         };
 
-        
-    forms:FormDefinitionBase response = check baseClient->/.post(
+
+    hsforms:FormDefinitionBase response = check baseClient->/.post(
         inputFormDefinition     
     );
 }

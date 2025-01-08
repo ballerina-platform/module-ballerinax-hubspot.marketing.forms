@@ -18,7 +18,7 @@ import ballerina/test;
 
 final Client mockClient = check new (config,serviceUrl = "http://localhost:9090/marketing/v3/forms");
 
-final  string mockFormId = "b6336282-50ec-465e-894e-e368146fa25f";
+configurable string mockFormId = ?;
 
 @test:Config {}
 isolated function mockTestGetForm() returns  error? {

@@ -132,7 +132,7 @@ function testGetFormById() returns error? {
 
     FormDefinitionBase response = check baseClient->/[formId]();
 
-    test:assertTrue(response?.id == formId);
+    test:assertEquals(response?.id , formId);
 
 
 }
@@ -230,7 +230,7 @@ function testUpdateForm() returns error? {
             name: "form" + currentUtc.toString() + "updated_form"
         }
     );
-    test:assertTrue(response?.id == formId);
+    test:assertEquals(response?.id , formId);
 }
 
 @test:Config {
@@ -241,6 +241,6 @@ function testDeleteForm() returns error? {
     json response = check baseClient->/[formId].delete();
 
     io:println(response);
-    test:assertTrue(response == ());
+    test:assertEquals(response ,());
 
 }

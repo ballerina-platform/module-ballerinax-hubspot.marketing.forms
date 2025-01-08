@@ -10,7 +10,7 @@ Refer to the [HubSpot Developer Terms](https://legal.hubspot.com/developer-terms
 
 ## Setup guide
 
-To use the HubSpot Feedback connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
+To use the HubSpot Marketing Forms connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
 
 ### Step 1: Create/Login to a HubSpot Developer Account
 
@@ -18,11 +18,10 @@ If you have an account already, go to the [HubSpot developer portal](https://app
 
 If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
-### Step 2 (Optional): Create a [Developer Test Account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account
+### Step 2 (Optional): Create a Developer Test Account
+Within app developer accounts, you can create [developer test account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account to test apps and integrations without affecting any real HubSpot data.
 
-Within app developer accounts, you can create developer test accounts to test apps and integrations without affecting any real HubSpot data.
-
-**Note:** These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
+> **Note:** These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
 
 1. Go to Test accounts section from the left sidebar.
 
@@ -39,7 +38,6 @@ Within app developer accounts, you can create developer test accounts to test ap
 4. You will see the newly created test account in the list of test accounts.
 
 ![Hubspot Developer Test Account](../docs/setup/resources/test-account-portal.png)
-
 
 ### Step 3: Create a HubSpot App
 

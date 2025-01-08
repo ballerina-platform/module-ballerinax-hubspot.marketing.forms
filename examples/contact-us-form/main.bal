@@ -2,8 +2,6 @@ import ballerinax/hubspot.marketing.forms;
 import ballerina/oauth2;
 import ballerina/io;
 
-
-
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
@@ -15,18 +13,13 @@ forms:OAuth2RefreshTokenGrantConfig auth = {
     credentialBearer: oauth2:POST_BODY_BEARER // this line should be added in to when you are going to create auth object.
 };
 
-
 forms:ConnectionConfig config = {
     auth: auth
 };
 
-
 final forms:Client baseClient = check  new (config); 
 
-
-
 public function main() returns error?{
-
 
      forms:FormDefinitionCreateRequestBase inputFormDefinition = {
             formType: "hubspot",
@@ -195,24 +188,12 @@ public function main() returns error?{
 
     io:println("Form is updated at" + updateResponse?.updatedAt);
 
-
     forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
     io:println("Form is created at" + getResponse?.createdAt);
-
-
-
-
-
 
     json deleteResponse = check baseClient->/[formId].delete();
 
     if (deleteResponse == null){
         io:println("Form is deleted");}
-
-
-   
-
-
-
-    
+  
 };

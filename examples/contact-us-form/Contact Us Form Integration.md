@@ -6,12 +6,11 @@ This use case demonstrates how the HubSpot Marketing Forms API v3 can be utilize
 
 ### 1. Setup Hubspot account
 
-Refer to the `Setup guide` in `README.md` file to set up your hubspot
-account, if you do not have one.
+Refer to the `Setup guide` in `README.md` file to set up your HubSpot account, if you do not have one.
 
 ### 2. Configuration
 
-Update your Zendesk account related configurations in the `Config.toml` file in the example root directory:
+Update your HubSpot account related configurations in the `Config.toml` file in the example root directory:
 
 ```toml
 clientId = ''

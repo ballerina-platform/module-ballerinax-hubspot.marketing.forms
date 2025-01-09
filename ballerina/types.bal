@@ -28,15 +28,15 @@ public type DependentField record {
 public type FormDefinitionBase HubSpotFormDefinition;
 
 public type LegalConsentOptionsImplicitConsentToProcess record {
-    # 
+    #
     LegalConsentCheckbox[] communicationsCheckboxes;
-    # 
+    #
     string communicationConsentText?;
-    # 
+    #
     "implicit_consent_to_process" 'type;
-    # 
+    #
     string privacyText;
-    # 
+    #
     string consentToProcessText?;
 };
 
@@ -58,7 +58,7 @@ public type HubSpotFormDefinition record {
 public type FormDisplayOptions record {
     # Whether the form will render as raw HTML as opposed to inside an iFrame.
     boolean renderRawHtml;
-    # 
+    #
     string cssClass?;
     # The theme used for styling the input fields. This will not apply if the form is added to a HubSpot CMS page.
     "default_style"|"canvas"|"linear"|"round"|"sharp"|"legacy" theme;
@@ -118,29 +118,29 @@ public type MobilePhoneField record {
 
 # Styling options for the form
 public type FormStyle record {
-    # 
+    #
     string labelTextSize;
-    # 
+    #
     string legalConsentTextColor;
-    # 
+    #
     string fontFamily;
-    # 
+    #
     string legalConsentTextSize;
-    # 
+    #
     string backgroundWidth;
-    # 
+    #
     string helpTextSize;
-    # 
+    #
     string submitFontColor;
-    # 
+    #
     string labelTextColor;
-    # 
+    #
     "left"|"right"|"center" submitAlignment;
-    # 
+    #
     string submitSize;
-    # 
+    #
     string helpTextColor;
-    # 
+    #
     string submitColor;
 };
 
@@ -199,19 +199,19 @@ public type HubSpotFormConfiguration record {
 };
 
 public type LegalConsentOptionsExplicitConsentToProcess record {
-    # 
+    #
     LegalConsentCheckbox[] communicationsCheckboxes;
-    # 
+    #
     string communicationConsentText?;
-    # 
+    #
     string consentToProcessCheckboxLabel?;
-    # 
+    #
     string consentToProcessFooterText?;
-    # 
+    #
     "explicit_consent_to_process" 'type;
-    # 
+    #
     string privacyText;
-    # 
+    #
     string consentToProcessText?;
 };
 
@@ -330,14 +330,14 @@ public type OAuth2RefreshTokenGrantConfig record {|
 
 # Describes how a phone number should be validated.
 public type PhoneFieldValidation record {
-    # 
+    #
     int:Signed32 minAllowedDigits;
-    # 
+    #
     int:Signed32 maxAllowedDigits;
 };
 
 public type LegalConsentOptionsNone record {
-    # 
+    #
     "none" 'type;
 };
 
@@ -380,7 +380,7 @@ public type FormDefinitionCreateRequestBase HubSpotFormDefinitionCreateRequest;
 
 # A collection of up to three form fields usually displayed in a row.
 public type FieldGroup record {
-    # 
+    #
     "default_group"|"progressive"|"queued" groupType;
     # The type of rich text included. The default value is text.
     "text"|"image" richTextType;
@@ -417,7 +417,7 @@ public type FileField record {
 };
 
 public type LegalConsentCheckbox record {
-    # 
+    #
     int:Signed32 subscriptionTypeId;
     # The main label for the form field.
     string label;
@@ -501,21 +501,21 @@ public type MultipleCheckboxesField record {
 };
 
 public type LegalConsentOptionsLegitimateInterest record {
-    # 
+    #
     int[] subscriptionTypeIds;
-    # 
+    #
     "lead"|"client"|"other" lawfulBasis;
-    # 
+    #
     "legitimate_interest" 'type;
-    # 
+    #
     string privacyText;
 };
 
 # Describes how a numeric value should be validated.
 public type NumberFieldValidation record {
-    # 
+    #
     int:Signed32 minAllowedDigits;
-    # 
+    #
     int:Signed32 maxAllowedDigits;
 };
 
@@ -527,15 +527,15 @@ public type GetMarketingV3FormsFormid_getbyidQueries record {
 
 # A condition based on customer input
 public type DependentFieldFilter record {
-    # 
+    #
     string rangeStart;
-    # 
+    #
     string[] values;
-    # 
+    #
     string value;
-    # 
+    #
     "eq"|"neq"|"contains"|"doesnt_contain"|"str_starts_with"|"str_ends_with"|"lt"|"lte"|"gt"|"gte"|"between"|"not_between"|"within_time_reverse"|"within_time"|"set_any"|"set_not_any"|"set_all"|"set_not_all"|"set_eq"|"set_neq"|"is_not_empty" operator;
-    # 
+    #
     string rangeEnd;
 };
 
@@ -574,7 +574,7 @@ public type ClientHttp1Settings record {|
 public type EnumeratedFieldOption record {
     # The order the choices will be displayed in.
     int:Signed32 displayOrder;
-    # 
+    #
     string description?;
     # The visible label for this choice.
     string label;
@@ -669,9 +669,9 @@ public type LifecycleStage record {
 };
 
 public type NextPage record {
-    # 
+    #
     string link?;
-    # 
+    #
     string after;
 };
 

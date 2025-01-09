@@ -242,5 +242,4 @@ function testDeleteForm() returns error? {
 
     io:println(response);
     test:assertEquals(response ,());
-
 }

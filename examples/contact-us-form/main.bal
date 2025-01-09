@@ -195,5 +195,4 @@ public function main() returns error?{
 
     if (deleteResponse == null){
         io:println("Form is deleted");}
-  
 };

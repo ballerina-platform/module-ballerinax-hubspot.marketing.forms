@@ -22,18 +22,12 @@ configurable string mockFormId = ?;
 
 @test:Config {}
 isolated function mockTestGetForm() returns  error? {
-
     CollectionResponseFormDefinitionBaseForwardPaging response = check mockClient->/.get();
-
-
-
     test:assertTrue(response?.results.length() > 0);
 }
 
 @test:Config {}
 isolated function mockTestGetFormById() returns  error? {
-
     FormDefinitionBase response = check mockClient->/[mockFormId].get();
-
     test:assertEquals(response?.id, mockFormId);
 }

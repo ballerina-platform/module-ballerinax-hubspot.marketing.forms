@@ -47,6 +47,6 @@ The OpenAPI specification is obtained from ([Hubspot Marketing Forms](https://de
 The following command was used to generate the Ballerina client from the OpenAPI specification. The command should be executed from the repository root directory.
 
 ```bash
-# TODO: Add OpenAPI CLI command used to generate the client
+bal openapi -i docs/spec/openapi.yaml --mode client  --license docs/license.txt -o ballerina/ --nullable
 ```
 Note: The license year is hardcoded to 2024, change if necessary.

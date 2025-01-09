@@ -2,9 +2,9 @@
 
 The `HubSpot Marketing Forms API v3` provides practical examples illustrating usage in various scenarios. Explore these examples, covering use cases like user registration, data management, and metadata tracking.
 
-1. `Contact Us Form Integration` - Build dynamic 'Contact Us' forms to handle customer inquiries efficiently, enabling seamless communication and accurate data collection.
+1. [Contact Us Form Integration](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/tree/main/examples/contact-us-form) - Build dynamic 'Contact Us' forms to handle customer inquiries efficiently, enabling seamless communication and accurate data collection.
 
-2. `Sign Up Form Integration` - Create, update, and manage user registration forms with customizable fields such as name, email, and consent checkboxes to streamline user onboarding.
+2. [Sign Up Form Integration](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/tree/main/examples/sign-up-form) - Create, update, and manage user registration forms with customizable fields such as name, email, and consent checkboxes to streamline user onboarding.
 
 
 

@@ -297,3 +297,6 @@ public function main() returns error? {
 The `HubSpot Marketing Forms` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.forms/tree/main/examples/), covering the following use cases:
 
 [//]: # (TODO: Add examples)
+1. `Contact Us Form Integration` - Build dynamic 'Contact Us' forms to handle customer inquiries efficiently, enabling seamless communication and accurate data collection.
+
+2. `Sign Up Form Integration` - Create, update, and manage user registration forms with customizable fields such as name, email, and consent checkboxes to streamline user onboarding.

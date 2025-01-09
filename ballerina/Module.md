@@ -24,50 +24,50 @@ Within app developer accounts, you can create [developer test account](https://d
 
 1. Go to Test accounts section from the left sidebar.
 
-![Hubspot Developer Portal](../docs/setup/resources/test-account.png)
+![Hubspot Developer Portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/test-account.png)
 
 2. Click on the `Create developer test account` button on the top right corner.
 
-![Hubspot Developer Test Account](../docs/setup/resources/create-test-account.png)
+![Hubspot Developer Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/create-test-account.png)
 
 3. In the pop-up window, provide a name for the test account and click on the `Create` button.
 
-![Hubspot Developer Test Account](../docs/setup/resources/create-account.png)
+![Hubspot Developer Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/create-account.png)
 
 4. You will see the newly created test account in the list of test accounts.
 
-![Hubspot Developer Test Account](../docs/setup/resources/test-account-portal.png)
+![Hubspot Developer Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/test-account-portal.png)
 
 ### Step 3: Create a HubSpot App
 
 1. Now navigate to the `Apps` section from the left sidebar and click on the `Create app` button on the top right corner.
 
-![Hubspot Create App](../docs/setup/resources/create-app.png)
+![Hubspot Create App](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/create-app.png)
 
 2. Provide a public app name and description for your app.
 
-![Hubspot Create App](./docs/setup/resources/app-name-desc.png)
+![Hubspot Create App](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/app-name-desc.png)
 
 ### Step 4: Configure the Authentication Flow
 
 1. Move to the `Auth` tab.
 
-![Hubspot Developer Config Auth](../docs/setup/resources/config-auth.png)
+![Hubspot Developer Config Auth](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/config-auth.png)
 
 2. In the `Scopes` section, add the following scopes for your app using the `Add new scopes` button.
    - `forms`
 
-![Hubspot Developer App Add Scopes](../docs/setup/resources/add-scopes.png)
+![Hubspot Developer App Add Scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/add-scopes.png)
 
 3. In the `Redirect URL` section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can also use `localhost` addresses for local development purposes. Then click the `Create App` button.
 
-![Hubspot Create Developer App](../docs/setup/resources/redirect-url.png)
+![Hubspot Create Developer App](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/redirect-url.png)
 
 ### Step 5: Get the Client ID and Client Secret
 
 Navigate to the `Auth` tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
 
-![Hubspot Get Credentials](../docs/setup/resources/client-id-secret.png)
+![Hubspot Get Credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/client-id-secret.png)
 
 ### Step 6: Setup Authentication Flow
 
@@ -85,7 +85,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 2. Paste it in the browser and select your developer test account to intall the app when prompted.
 
-![Hubspot Get Auth Code](../docs/setup/resources/account-select.png)
+![Hubspot Get Auth Code](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/main/docs/setup/resources/account-select.png)
 
 3. A code will be displayed in the browser. Copy the code.
 
@@ -127,8 +127,6 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 5. Store the access token securely for use in your application.
 
 ## Quickstart
-
-[//]: # "TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets."
 
 To use the `HubSpot Marketing Forms` connector in your Ballerina application, update the `.bal` file as follows:
 
@@ -296,7 +294,6 @@ public function main() returns error? {
 
 The `HubSpot Marketing Forms` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.forms/tree/main/examples/), covering the following use cases:
 
-[//]: # (TODO: Add examples)
 1. [Contact Us Form Integration](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/tree/main/examples/contact-us-form) - Build dynamic 'Contact Us' forms to handle customer inquiries efficiently, enabling seamless communication and accurate data collection.
 
 2. [Sign Up Form Integration](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/tree/main/examples/sign-up-form) - Create, update, and manage user registration forms with customizable fields such as name, email, and consent checkboxes to streamline user onboarding.

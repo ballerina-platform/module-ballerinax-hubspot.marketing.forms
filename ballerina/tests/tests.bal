@@ -14,36 +14,37 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/test;
-import ballerina/oauth2;
-import  ballerina/time;
 import ballerina/io;
+import ballerina/oauth2;
+import ballerina/test;
+import ballerina/time;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
- OAuth2RefreshTokenGrantConfig auth = {
-       clientId,
-       clientSecret,
-       refreshToken,
-       credentialBearer: oauth2:POST_BODY_BEARER // this line should be added to create auth object.
+OAuth2RefreshTokenGrantConfig auth = {
+    clientId,
+    clientSecret,
+    refreshToken,
+    credentialBearer: oauth2:POST_BODY_BEARER // this line should be added to create auth object.
 
-   };
+};
 
-ConnectionConfig config = {auth : auth};
+ConnectionConfig config = {auth: auth};
 final Client baseClient = check new Client(config, serviceUrl = "https://api.hubapi.com/marketing/v3/forms");
 
 final time:Utc currentUtc = time:utcNow();
 string formId = "";
 
 @test:Config {}
-isolated function testGetForm() returns  error? {
+isolated function testGetForm() returns error? {
 
     CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
 
     test:assertTrue(response?.results.length() > 0);
 }
+
 @test:Config {}
 function testCreateForm() returns error? {
     FormDefinitionBase response = check baseClient->/.post(
@@ -69,7 +70,7 @@ function testCreateForm() returns error? {
                                 blockedEmailDomains: [],
                                 useDefaultBlockList: false
                             }
-                               
+
                         }
                     ]
                 }
@@ -132,8 +133,7 @@ function testGetFormById() returns error? {
 
     FormDefinitionBase response = check baseClient->/[formId]();
 
-    test:assertEquals(response?.id , formId);
-
+    test:assertEquals(response?.id, formId);
 
 }
 
@@ -143,7 +143,7 @@ function testGetFormById() returns error? {
 function testUpdateEntireForm() returns error? {
 
     FormDefinitionBase response = check baseClient->/[formId].put(
-         {
+        {
             formType: "hubspot",
             id: formId,
             name: "form" + currentUtc.toString() + "updated",
@@ -167,7 +167,7 @@ function testUpdateEntireForm() returns error? {
                                 blockedEmailDomains: [],
                                 useDefaultBlockList: false
                             }
-                               
+
                         }
                     ]
                 }
@@ -230,7 +230,7 @@ function testUpdateForm() returns error? {
             name: "form" + currentUtc.toString() + "updated_form"
         }
     );
-    test:assertEquals(response?.id , formId);
+    test:assertEquals(response?.id, formId);
 }
 
 @test:Config {
@@ -241,5 +241,5 @@ function testDeleteForm() returns error? {
     json response = check baseClient->/[formId].delete();
 
     io:println(response);
-    test:assertEquals(response ,());
+    test:assertEquals(response, ());
 }

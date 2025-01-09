@@ -16,18 +16,18 @@
 
 import ballerina/test;
 
-final Client mockClient = check new (config,serviceUrl = "http://localhost:9090/marketing/v3/forms");
+final Client mockClient = check new (config, serviceUrl = "http://localhost:9090/marketing/v3/forms");
 
 configurable string mockFormId = ?;
 
 @test:Config {}
-isolated function mockTestGetForm() returns  error? {
+isolated function mockTestGetForm() returns error? {
     CollectionResponseFormDefinitionBaseForwardPaging response = check mockClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
 @test:Config {}
-isolated function mockTestGetFormById() returns  error? {
+isolated function mockTestGetFormById() returns error? {
     FormDefinitionBase response = check mockClient->/[mockFormId].get();
     test:assertEquals(response?.id, mockFormId);
 }

@@ -168,6 +168,7 @@ http:Service mockService = service object {
         };
     }
 };
+
 function init() returns error? {
     log:printInfo("Initializing mock service");
     check httpListener.attach(mockService, "/");

@@ -1,6 +1,6 @@
 # Examples
 
-The `HubSpot Marketing Forms API v3` provides practical examples illustrating usage in various scenarios. Explore these examples, covering use cases like user registration, data management, and metadata tracking.
+The "HubSpot Marketing Forms Connector" provides practical examples illustrating usage in various scenarios. Explore these examples, covering use cases like user registration, data management, and metadata tracking.
 
 1. [Contact Us Form Integration](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.forms/tree/main/examples/contact-us-form) - Build dynamic 'Contact Us' forms to handle customer inquiries efficiently, enabling seamless communication and accurate data collection.
 
@@ -12,12 +12,12 @@ The `HubSpot Marketing Forms API v3` provides practical examples illustrating us
 
 ### 1. Setup Hubspot account
 
-Refer to the `Setup guide` in `README.md` file to set up your hubspot
+Refer to the "Setup guide" in "README.md" file to set up your hubspot
 account, if you do not have one.
 
 ### 2. Configuration
 
-Update your Zendesk account related configurations in the `Config.toml` file in the example root directory:
+Update your HubSpot account related configurations in the "Config.toml" file in the example root directory:
 
 ```toml
 clientId = ''

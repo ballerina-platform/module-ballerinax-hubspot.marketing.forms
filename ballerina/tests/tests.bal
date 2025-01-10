@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/io;
 import ballerina/oauth2;
 import ballerina/test;
 import ballerina/time;
@@ -32,16 +31,14 @@ OAuth2RefreshTokenGrantConfig auth = {
 };
 
 ConnectionConfig config = {auth: auth};
-final Client baseClient = check new Client(config, serviceUrl = "https://api.hubapi.com/marketing/v3/forms");
+final Client baseClient = check new Client(config);
 
 final time:Utc currentUtc = time:utcNow();
 string formId = "";
 
 @test:Config {}
 isolated function testGetForm() returns error? {
-
     CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
-
     test:assertTrue(response?.results.length() > 0);
 }
 
@@ -121,18 +118,13 @@ function testCreateForm() returns error? {
     formId = response?.id;
 
     test:assertTrue(response?.id !is "");
-    io:println(response?.id);
 }
 
 @test:Config {
     dependsOn: [testCreateForm]
 }
 function testGetFormById() returns error? {
-
-    io:print("formId: " + formId);
-
     FormDefinitionBase response = check baseClient->/[formId]();
-
     test:assertEquals(response?.id, formId);
 
 }
@@ -141,7 +133,6 @@ function testGetFormById() returns error? {
     dependsOn: [testCreateForm]
 }
 function testUpdateEntireForm() returns error? {
-
     FormDefinitionBase response = check baseClient->/[formId].put(
         {
             formType: "hubspot",
@@ -214,17 +205,14 @@ function testUpdateEntireForm() returns error? {
             }
         }
     );
-
     test:assertTrue(response?.id == formId);
     test:assertEquals(response?.archived, true);
-
 }
 
 @test:Config {
     dependsOn: [testCreateForm]
 }
 function testUpdateForm() returns error? {
-
     FormDefinitionBase response = check baseClient->/[formId].patch(
         {
             name: "form" + currentUtc.toString() + "updated_form"
@@ -237,9 +225,6 @@ function testUpdateForm() returns error? {
     dependsOn: [testCreateForm]
 }
 function testDeleteForm() returns error? {
-
     json response = check baseClient->/[formId].delete();
-
-    io:println(response);
     test:assertEquals(response, ());
 }

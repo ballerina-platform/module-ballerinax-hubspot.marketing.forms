@@ -1,6 +1,6 @@
 # Sign Up Form integration
 
-This use case demonstrates how the HubSpot Marketing Forms API v3 can be utilized to manage and optimize customer engagement through dynamic 'Sign Up' forms. The API facilitates seamless creation, updating, and deletion of forms while enabling retrieval of essential metadata, such as creation dates. By leveraging this integration, businesses can streamline user registration, ensure accurate data collection, and maintain an organized repository of user information.
+This use case demonstrates how the HubSpot Marketing Forms Connector can be utilized to manage and optimize customer engagement through dynamic 'Sign Up' forms. The API facilitates seamless creation, updating, and deletion of forms while enabling retrieval of essential metadata, such as creation dates. By leveraging this integration, businesses can streamline user registration, ensure accurate data collection, and maintain an organized repository of user information.
 
 ## Prerequisites
 

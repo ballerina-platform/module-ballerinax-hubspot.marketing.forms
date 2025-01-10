@@ -28,9 +28,7 @@ forms:OAuth2RefreshTokenGrantConfig auth = {
     refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER // this line should be added in to when you are going to create auth object.
 };
-
 final forms:Client baseClient = check new ({auth});
-
 public function main() returns error? {
     forms:FormDefinitionCreateRequestBase inputFormDefinition = {
         formType: "hubspot",

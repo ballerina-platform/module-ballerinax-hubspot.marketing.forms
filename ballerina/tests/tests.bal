@@ -36,13 +36,17 @@ final Client baseClient = check new Client(config);
 final time:Utc currentUtc = time:utcNow();
 string formId = "";
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testGetForm() returns error? {
     CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 function testCreateForm() returns error? {
     FormDefinitionBase response = check baseClient->/.post(
         {
@@ -121,7 +125,8 @@ function testCreateForm() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_tests"]
 }
 function testGetFormById() returns error? {
     FormDefinitionBase response = check baseClient->/[formId]();
@@ -130,7 +135,8 @@ function testGetFormById() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_tests"]
 }
 function testUpdateEntireForm() returns error? {
     FormDefinitionBase response = check baseClient->/[formId].put(
@@ -210,7 +216,8 @@ function testUpdateEntireForm() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_tests"]
 }
 function testUpdateForm() returns error? {
     FormDefinitionBase response = check baseClient->/[formId].patch(
@@ -222,7 +229,8 @@ function testUpdateForm() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_tests"]
 }
 function testDeleteForm() returns error? {
     json response = check baseClient->/[formId].delete();

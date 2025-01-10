@@ -32,7 +32,7 @@ final forms:Client baseClient = check new ({auth});
 public function main() returns error? {
     forms:FormDefinitionCreateRequestBase inputFormDefinition = {
         formType: "hubspot",
-        name: "Contact Us Form",
+        name: "Contact Us Form New",
         createdAt: "2024-12-23T07:13:28.102Z",
         updatedAt: "2024-12-23T07:13:28.102Z",
         archived: false,

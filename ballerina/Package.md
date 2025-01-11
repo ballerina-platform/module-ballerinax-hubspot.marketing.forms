@@ -2,7 +2,7 @@
 
 [HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
-The "hubspot.marketing.forms" offers APIs to connect and interact with the [Marketing Forms](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
+The `hubspot.marketing.forms` offers APIs to connect and interact with the [Marketing Forms](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
 
 > **Note:** This package may be changed in the future based on the HubSpot API changes, since it is currently under development and is subject to change based on testing and feedback. By using this package, you are agreeing to accept any future changes that might occur and understand the risk associated with testing an unstable API.
 > Refer to the [HubSpot Developer Terms](https://legal.hubspot.com/developer-terms) & [Developer Beta Terms](https://legal.hubspot.com/developerbetaterms) for more information.

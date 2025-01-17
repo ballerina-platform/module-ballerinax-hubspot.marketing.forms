@@ -186,5 +186,5 @@ public function main() returns error? {
     forms:FormDefinitionBase getResponse = check formsClient->/[formId]();
     io:println("Form is created at" + getResponse?.createdAt);
     json deleteResponse = check formsClient->/[formId].delete();
-    io:println(formId + " Form is deleted.");
+    io:println(formId+ "Form is deleted at" + deleteResponse.toString());
 };

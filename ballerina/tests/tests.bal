@@ -39,7 +39,8 @@ final time:Utc currentUtc = time:utcNow();
 string formId = "";
 
 @test:Config {
-    groups: ["live_service_test"]
+    groups: ["live_service_test"],
+    enable: enableClient0auth2
 }
 isolated function testGetForm() returns error? {
     CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
@@ -47,7 +48,8 @@ isolated function testGetForm() returns error? {
 }
 
 @test:Config {
-    groups: ["live_service_test"]
+    groups: ["live_service_test"],
+    enable: enableClient0auth2
 }
 function testCreateForm() returns error? {
     FormDefinitionBase response = check baseClient->/.post(
@@ -128,7 +130,8 @@ function testCreateForm() returns error? {
 
 @test:Config {
     dependsOn: [testCreateForm],
-    groups: ["live_service_test"]
+    groups: ["live_service_test"],
+    enable: enableClient0auth2
 }
 function testGetFormById() returns error? {
     FormDefinitionBase response = check baseClient->/[formId]();
@@ -138,7 +141,8 @@ function testGetFormById() returns error? {
 
 @test:Config {
     dependsOn: [testCreateForm],
-    groups: ["live_service_test"]
+    groups: ["live_service_test"],
+    enable: enableClient0auth2
 }
 function testUpdateEntireForm() returns error? {
     FormDefinitionBase response = check baseClient->/[formId].put(
@@ -219,7 +223,8 @@ function testUpdateEntireForm() returns error? {
 
 @test:Config {
     dependsOn: [testCreateForm],
-    groups: ["live_service_test"]
+    groups: ["live_service_test"],
+    enable: enableClient0auth2
 }
 function testUpdateForm() returns error? {
     FormDefinitionBase response = check baseClient->/[formId].patch(
@@ -232,7 +237,8 @@ function testUpdateForm() returns error? {
 
 @test:Config {
     dependsOn: [testCreateForm],
-    groups: ["live_service_test"]
+    groups: ["live_service_test"],
+    enable: enableClient0auth2
 }
 function testDeleteForm() returns error? {
     json response = check baseClient->/[formId].delete();

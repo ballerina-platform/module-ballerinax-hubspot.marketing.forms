@@ -28,7 +28,7 @@ final Client mockClient = check new (
 final string mockFormId = "b6336282-50ec-465e-894e-e368146fa25f";
 
 @test:Config {
-    groups: ["mock_tests"]
+    groups: ["mock_service_test"]
 }
 isolated function mockTestGetForm() returns error? {
     CollectionResponseFormDefinitionBaseForwardPaging response = check mockClient->/.get();
@@ -36,7 +36,7 @@ isolated function mockTestGetForm() returns error? {
 }
 
 @test:Config {
-    groups: ["mock_tests"]
+    groups: ["mock_service_test"]
 }
 isolated function mockTestGetFormById() returns error? {
     FormDefinitionBase response = check mockClient->/[mockFormId].get();

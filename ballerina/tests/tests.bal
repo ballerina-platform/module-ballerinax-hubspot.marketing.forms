@@ -15,34 +15,40 @@
 // under the License.
 
 import ballerina/oauth2;
+import ballerina/os;
 import ballerina/test;
 import ballerina/time;
 
-configurable string clientId = ?;
-configurable string clientSecret = ?;
-configurable string refreshToken = ?;
+configurable boolean enableClient0auth2 = os:getEnv("IS_LIVE_SERVER") == "false";
+configurable string clientId = enableClient0auth2 ? os:getEnv("CLIENT_ID") : "test";
+configurable string clientSecret = enableClient0auth2 ? os:getEnv("CLIENT_SECRET") : "test";
+configurable string refreshToken = enableClient0auth2 ? os:getEnv("REFRESH_TOKEN") : "test";
 
 OAuth2RefreshTokenGrantConfig auth = {
     clientId,
     clientSecret,
     refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER // this line should be added to create auth object.
+    credentialBearer: oauth2:POST_BODY_BEARER
 
 };
 
-ConnectionConfig config = {auth: auth};
+ConnectionConfig config = {auth: enableClient0auth2 ? auth : {token: "Bearer token"}};
 final Client baseClient = check new Client(config);
 
 final time:Utc currentUtc = time:utcNow();
 string formId = "";
 
-@test:Config {}
+@test:Config {
+    groups: ["live_service_test"]
+}
 isolated function testGetForm() returns error? {
     CollectionResponseFormDefinitionBaseForwardPaging response = check baseClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_service_test"]
+}
 function testCreateForm() returns error? {
     FormDefinitionBase response = check baseClient->/.post(
         {
@@ -121,7 +127,8 @@ function testCreateForm() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_service_test"]
 }
 function testGetFormById() returns error? {
     FormDefinitionBase response = check baseClient->/[formId]();
@@ -130,7 +137,8 @@ function testGetFormById() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_service_test"]
 }
 function testUpdateEntireForm() returns error? {
     FormDefinitionBase response = check baseClient->/[formId].put(
@@ -210,7 +218,8 @@ function testUpdateEntireForm() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_service_test"]
 }
 function testUpdateForm() returns error? {
     FormDefinitionBase response = check baseClient->/[formId].patch(
@@ -222,7 +231,8 @@ function testUpdateForm() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testCreateForm]
+    dependsOn: [testCreateForm],
+    groups: ["live_service_test"]
 }
 function testDeleteForm() returns error? {
     json response = check baseClient->/[formId].delete();

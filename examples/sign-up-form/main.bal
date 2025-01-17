@@ -26,9 +26,9 @@ forms:OAuth2RefreshTokenGrantConfig auth = {
     clientId,
     clientSecret,
     refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER // this line should be added in to when you are going to create auth object.
+    credentialBearer: oauth2:POST_BODY_BEARER
 };
-final forms:Client baseClient = check new ({auth});
+final forms:Client formsClient = check new ({auth});
 public function main() returns error? {
     forms:FormDefinitionCreateRequestBase inputFormDefinition = {
         formType: "hubspot",
@@ -98,12 +98,12 @@ public function main() returns error? {
         }
     };
 
-    forms:FormDefinitionBase response = check baseClient->/.post(
+    forms:FormDefinitionBase response = check formsClient->/.post(
         inputFormDefinition
     );
     string formId = response?.id;
     io:println("Form is created  with ID:  " + formId);
-    forms:FormDefinitionBase updateResponse = check baseClient->/[formId].patch(
+    forms:FormDefinitionBase updateResponse = check formsClient->/[formId].patch(
         {
             fieldGroups: [
                 {
@@ -183,10 +183,8 @@ public function main() returns error? {
         }
     );
     io:println("Form is updated at" + updateResponse?.updatedAt);
-    forms:FormDefinitionBase getResponse = check baseClient->/[formId]();
+    forms:FormDefinitionBase getResponse = check formsClient->/[formId]();
     io:println("Form is created at" + getResponse?.createdAt);
-    json deleteResponse = check baseClient->/[formId].delete();
-    if (deleteResponse == null) {
-        io:println("Form is deleted");
-    }
+    json deleteResponse = check formsClient->/[formId].delete();
+    io:println(formId+ "Form is deleted at" + deleteResponse.toString());
 };

@@ -16,16 +16,28 @@
 
 import ballerina/test;
 
-final Client mockClient = check new (config, serviceUrl = "http://localhost:9090/marketing/v3/forms");
+// create mock client
+final Client mockClient = check new (
+    {
+        auth: {
+            token: "test-token" // This approach eliminates the need for the client to make additional server requests for token validation, such as a refresh token request in the OAuth2 flow.
+        }
+    }, "http://localhost:9090/marketing/v3/forms"
+);
+
 final string mockFormId = "b6336282-50ec-465e-894e-e368146fa25f";
 
-@test:Config {}
+@test:Config {
+    groups: ["mock_service_test"]
+}
 isolated function mockTestGetForm() returns error? {
     CollectionResponseFormDefinitionBaseForwardPaging response = check mockClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["mock_service_test"]
+}
 isolated function mockTestGetFormById() returns error? {
     FormDefinitionBase response = check mockClient->/[mockFormId].get();
     test:assertEquals(response?.id, mockFormId);

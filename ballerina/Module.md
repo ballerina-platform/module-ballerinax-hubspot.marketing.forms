@@ -1,6 +1,6 @@
 ## Overview
 
-[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
+[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
 The `hubspot.marketing.forms` offers APIs to connect and interact with the [Marketing Forms](https://developers.hubspot.com/docs/reference/api/marketing/forms) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
 
@@ -18,6 +18,7 @@ If you have an account already, go to the [HubSpot developer portal](https://app
 If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
 ### Step 2 (Optional): Create a Developer Test Account
+
 Within app developer accounts, you can create [developer test account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account to test apps and integrations without affecting any real HubSpot data.
 
 > **Note:** These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
@@ -143,7 +144,7 @@ import ballerina/oauth2;
 
 2. Instantiate a `hsmforms:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
-    ```ballerina 
+    ```ballerina
     configurable string clientId = ?;
     configurable string clientSecret = ?;
     configurable string refreshToken = ?;
@@ -165,7 +166,7 @@ import ballerina/oauth2;
 Now, utilize the available connector operations. A sample usecase is shown below.
 
 #### Create a Marketing Form
-    
+
 ```ballerina
 public function main() returns error? {
 
@@ -191,47 +192,45 @@ public function main() returns error? {
                                 blockedEmailDomains: [],
                                 useDefaultBlockList: false
                             }
-                               
                         }
                     ]
                 },
-                 {
-      groupType: "default_group",
-      richTextType: "text",
-      fields: [
-        {
-          objectTypeId: "0-1",
-          name: "firstname",
-          label: "First name",
-          required: true,
-          hidden: false,
-          fieldType: "single_line_text"
-        },
-        {
-          objectTypeId: "0-1",
-          name: "lastname",
-          label: "Last name",
-          required: true,
-          hidden: false,
-          fieldType: "single_line_text"
-        }
-      ]
-    },
-     {
-        groupType: "default_group",
-      richTextType: "text",
-      fields: [
-        {
-            objectTypeId: "0-1",
-            name: "message",
-            label: "Message",
-            required: true,
-            hidden: false,
-            fieldType: "multi_line_text"
-        }
-      ]
-
-    }
+                {
+                    groupType: "default_group",
+                    richTextType: "text",
+                    fields: [
+                      {
+                        objectTypeId: "0-1",
+                        name: "firstname",
+                        label: "First name",
+                        required: true,
+                        hidden: false,
+                        fieldType: "single_line_text"
+                      },
+                      {
+                        objectTypeId: "0-1",
+                        name: "lastname",
+                        label: "Last name",
+                        required: true,
+                        hidden: false,
+                        fieldType: "single_line_text"
+                      }
+                    ]
+                  },
+                  {
+                    groupType: "default_group",
+                    richTextType: "text",
+                    fields: [
+                      {
+                          objectTypeId: "0-1",
+                          name: "message",
+                          label: "Message",
+                          required: true,
+                          hidden: false,
+                          fieldType: "multi_line_text"
+                      }
+                    ]
+                  }
             ],
             configuration: {
                 language: "en",
@@ -275,9 +274,8 @@ public function main() returns error? {
             }
         };
 
-
     hsforms:FormDefinitionBase response = check baseClient->/.post(
-        inputFormDefinition     
+        inputFormDefinition
     );
 }
 ```

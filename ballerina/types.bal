@@ -21,6 +21,7 @@ import ballerina/http;
 
 # A form field that will be displayed based on what the customer entered in another field
 public type DependentField record {
+    # A condition based on customer input
     DependentFieldFilter dependentCondition;
     EmailField|PhoneField|MobilePhoneField|SingleLineTextField|MultiLineTextField|NumberField|SingleCheckboxField|MultipleCheckboxesField|DropdownField|RadioField|DatepickerField|FileField|PaymentLinkRadioField dependentField;
 };
@@ -28,15 +29,10 @@ public type DependentField record {
 public type FormDefinitionBase HubSpotFormDefinition;
 
 public type LegalConsentOptionsImplicitConsentToProcess record {
-    # 
     LegalConsentCheckbox[] communicationsCheckboxes;
-    # 
     string communicationConsentText?;
-    # 
     "implicit_consent_to_process" 'type = "implicit_consent_to_process";
-    # 
     string privacyText;
-    # 
     string consentToProcessText?;
 };
 
@@ -51,6 +47,7 @@ public type HubSpotFormDefinition record {
     string id;
     LegalConsentOptionsNone|LegalConsentOptionsLegitimateInterest|LegalConsentOptionsExplicitConsentToProcess|LegalConsentOptionsImplicitConsentToProcess legalConsentOptions;
     string updatedAt;
+    # Options for styling the form
     FormDisplayOptions displayOptions;
 };
 
@@ -58,12 +55,12 @@ public type HubSpotFormDefinition record {
 public type FormDisplayOptions record {
     # Whether the form will render as raw HTML as opposed to inside an iFrame
     boolean renderRawHtml;
-    # 
     string cssClass?;
     # The theme used for styling the input fields. This will not apply if the form is added to a HubSpot CMS page
     "default_style"|"canvas"|"linear"|"round"|"sharp"|"legacy" theme;
     # The text displayed on the form submit button
     string submitButtonText;
+    # Styling options for the form
     FormStyle style;
 };
 
@@ -113,34 +110,23 @@ public type MobilePhoneField record {
     "mobile_phone" fieldType = "mobile_phone";
     # Whether a value for this field is required when submitting the form
     boolean required;
+    # Describes how a phone number should be validated
     PhoneFieldValidation validation;
 };
 
 # Styling options for the form
 public type FormStyle record {
-    # 
     string labelTextSize;
-    # 
     string legalConsentTextColor;
-    # 
     string fontFamily;
-    # 
     string legalConsentTextSize;
-    # 
     string backgroundWidth;
-    # 
     string helpTextSize;
-    # 
     string submitFontColor;
-    # 
     string labelTextColor;
-    # 
     "left"|"right"|"center" submitAlignment;
-    # 
     string submitSize;
-    # 
     string helpTextColor;
-    # 
     string submitColor;
 };
 
@@ -181,6 +167,7 @@ public type HubSpotFormConfiguration record {
     # Whether to add a reset link to the form. This removes any pre-populated content on the form and creates a new contact on submission
     boolean allowLinkToResetKnownValues;
     LifecycleStage[] lifecycleStages?;
+    # What should happen after the customer submits the form
     FormPostSubmitAction postSubmitAction;
     # The language of the form
     "af"|"ar-eg"|"bg"|"bn"|"ca-es"|"cs"|"da"|"de"|"el"|"en"|"es"|"es-mx"|"fi"|"fr"|"fr-ca"|"he-il"|"hr"|"hu"|"id"|"it"|"ja"|"ko"|"lt"|"ms"|"nl"|"no-no"|"pl"|"pt"|"pt-br"|"ro"|"ru"|"sk"|"sl"|"sv"|"th"|"tl"|"tr"|"uk"|"vi"|"zh-cn"|"zh-hk"|"zh-tw" language;
@@ -199,19 +186,12 @@ public type HubSpotFormConfiguration record {
 };
 
 public type LegalConsentOptionsExplicitConsentToProcess record {
-    # 
     LegalConsentCheckbox[] communicationsCheckboxes;
-    # 
     string communicationConsentText?;
-    # 
     string consentToProcessCheckboxLabel?;
-    # 
     string consentToProcessFooterText?;
-    # 
     "explicit_consent_to_process" 'type = "explicit_consent_to_process";
-    # 
     string privacyText;
-    # 
     string consentToProcessText?;
 };
 
@@ -293,6 +273,7 @@ public type HubSpotFormDefinitionCreateRequest record {
     string name;
     LegalConsentOptionsNone|LegalConsentOptionsLegitimateInterest|LegalConsentOptionsExplicitConsentToProcess|LegalConsentOptionsImplicitConsentToProcess legalConsentOptions;
     string updatedAt;
+    # Options for styling the form
     FormDisplayOptions displayOptions;
 };
 
@@ -318,6 +299,7 @@ public type EmailField record {
     "email" fieldType = "email";
     # Whether a value for this field is required when submitting the form
     boolean required;
+    # Describes how an email address should be validated
     EmailFieldValidation validation;
 };
 
@@ -330,14 +312,11 @@ public type OAuth2RefreshTokenGrantConfig record {|
 
 # Describes how a phone number should be validated
 public type PhoneFieldValidation record {
-    # 
     int:Signed32 minAllowedDigits;
-    # 
     int:Signed32 maxAllowedDigits;
 };
 
 public type LegalConsentOptionsNone record {
-    # 
     "none" 'type = "none";
 };
 
@@ -397,7 +376,6 @@ public type GetMarketingV3FormsFormIdGetByIdQueries record {
 
 # A collection of up to three form fields usually displayed in a row
 public type FieldGroup record {
-    # 
     "default_group"|"progressive"|"queued" groupType;
     # The type of rich text included. The default value is text
     "text"|"image" richTextType;
@@ -434,7 +412,6 @@ public type FileField record {
 };
 
 public type LegalConsentCheckbox record {
-    # 
     int:Signed32 subscriptionTypeId;
     # The main label for the form field
     string label;
@@ -464,6 +441,7 @@ public type NumberField record {
     "number" fieldType = "number";
     # Whether a value for this field is required when submitting the form
     boolean required;
+    # Describes how a numeric value should be validated
     NumberFieldValidation validation?;
 };
 
@@ -505,35 +483,24 @@ public type MultipleCheckboxesField record {
 };
 
 public type LegalConsentOptionsLegitimateInterest record {
-    # 
     int[] subscriptionTypeIds;
-    # 
     "lead"|"client"|"other" lawfulBasis;
-    # 
     "legitimate_interest" 'type = "legitimate_interest";
-    # 
     string privacyText;
 };
 
 # Describes how a numeric value should be validated
 public type NumberFieldValidation record {
-    # 
     int:Signed32 minAllowedDigits;
-    # 
     int:Signed32 maxAllowedDigits;
 };
 
 # A condition based on customer input
 public type DependentFieldFilter record {
-    # 
     string rangeStart;
-    # 
     string[] values;
-    # 
     string value;
-    # 
     "eq"|"neq"|"contains"|"doesnt_contain"|"str_starts_with"|"str_ends_with"|"lt"|"lte"|"gt"|"gte"|"between"|"not_between"|"within_time_reverse"|"within_time"|"set_any"|"set_not_any"|"set_all"|"set_not_all"|"set_eq"|"set_neq"|"is_not_empty" operator;
-    # 
     string rangeEnd;
 };
 
@@ -562,7 +529,6 @@ public type SingleCheckboxField record {
 public type EnumeratedFieldOption record {
     # The order the choices will be displayed in
     int:Signed32 displayOrder;
-    # 
     string description?;
     # The visible label for this choice
     string label;
@@ -589,6 +555,7 @@ public type HubSpotFormDefinitionPatchRequest record {
     # The name of the form. Expected to be unique for a hub
     string name?;
     LegalConsentOptionsNone|LegalConsentOptionsLegitimateInterest|LegalConsentOptionsExplicitConsentToProcess|LegalConsentOptionsImplicitConsentToProcess legalConsentOptions?;
+    # Options for styling the form
     FormDisplayOptions displayOptions?;
 };
 
@@ -624,6 +591,7 @@ public type PhoneField record {
     "phone" fieldType = "phone";
     # Whether a value for this field is required when submitting the form
     boolean required;
+    # Describes how a phone number should be validated
     PhoneFieldValidation validation;
 };
 
@@ -659,9 +627,7 @@ public type LifecycleStage record {
 };
 
 public type NextPage record {
-    # 
     string link?;
-    # 
     string after;
 };
 
